@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK Alpanza Bogor - Sekolah Kejuruan Unggul</title>
+    <meta name="description" content="SMK Alpanza Bogor - Sekolah Menengah Kejuruan Terakreditasi A dengan 3 Program Keahlian: TKJ, TKR, AKL. Daftar PPDB 2026!">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader {
+            text-align: center;
+            color: white;
+        }
+        
+        .loader .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: linear-gradient(90deg, var(--primary), #1e3a8a);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .top-bar a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: rgba(30, 58, 138, 0.95) !important;
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(30, 58, 138, 0.98) !important;
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white !important;
+        }
+        
+        .navbar-brand img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 600;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--secondary) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 70%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(245, 158, 11, 0.2) 0%, transparent 60%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero .tagline {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+        
+        .hero .lead {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.4s ease-out;
+        }
+        
+        .btn-hero {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            border: none;
+            margin: 10px;
+            transition: all 0.3s;
+            animation: fadeInUp 1.6s ease-out;
+        }
+        
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), #0f172a);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .section-title p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+        
+        /* Program Cards */
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .program-icon-wrapper {
+            background: linear-gradient(135deg, var(--primary), #1e3a8a);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .program-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+        
+        .program-icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .program-card-body {
+            padding: 30px;
+        }
+        
+        .program-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .program-card .full-name {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .program-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .program-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #e0f2fe;
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 5px;
+        }
+        
+        .btn-detail {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+        
+        .btn-detail:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+        }
+        
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), #1e3a8a);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            padding: 25px 30px;
+        }
+        
+        .modal-header .modal-title {
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
+        
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-section {
+            margin-bottom: 25px;
+        }
+        
+        .modal-section h5 {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .modal-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .modal-section ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #4b5563;
+        }
+        
+        .modal-section ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), #1e3a8a);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        /* Gallery */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            height: 300px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        /* PPDB Section */
+        .ppdb-section {
+            background: linear-gradient(135deg, var(--primary), #0f172a);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .ppdb-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .ppdb-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .ppdb-timeline {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .ppdb-timeline li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            border-left: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .ppdb-timeline li::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary);
+        }
+        
+        .ppdb-timeline li strong {
+            display: block;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        /* Contact Section */
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), #1e3a8a);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-right: 20px;
+        }
+        
+        .contact-info h5 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        
+        .contact-info p {
+            color: #6b7280;
+            margin: 0;
+        }
+        
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-info a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0f172a, var(--primary));
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        footer h5 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+            transition: all 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="spinner"></div>
+            <h4>SMK Alpanza Bogor</h4>
+            <p>Memuat...</p>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <i class="bi bi-telephone-fill me-2"></i>
+                    <a href="tel:02518661999">(0251) 8661999</a>
+                    <span class="ms-3">|</span>
+                    <i class="bi bi-whatsapp ms-3 me-2"></i>
+                    <a href="https://wa.me/6282222222229">0822-2222-2229</a>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <i class="bi bi-envelope-fill me-2"></i>
+                    <a href="mailto:info@smkalpanza-bogor.sch.id">info@smkalpanza-bogor.sch.id</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="bi bi-mortarboard-fill"></i>
+                SMK Alpanza Bogor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#programs">Program Keahlian</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fasilitas">Fasilitas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ppdb">PPDB 2026</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 hero-content">
+                    <h1 class="display-3 fw-bold">SMK Alpanza Bogor</h1>
+                    <p class="tagline">Unggul, Cerdas, Terampil & Mandiri</p>
+                    <p class="lead">Sekolah Menengah Kejuruan Terakreditasi A dengan 3 Program Keahlian Unggulan yang mempersiapkan lulusan siap kerja dan berwirausaha</p>
+                    <div class="mt-4">
+                        <a href="#ppdb" class="btn btn-warning btn-hero">
+                            <i class="bi bi-pencil-square me-2"></i>Daftar Sekarang
+                        </a>
+                        <a href="#programs" class="btn btn-outline-light btn-hero">
+                            <i class="bi bi-book me-2"></i>Lihat Program
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <span class="stat-number counter" data-target="1200">0</span>
+                        <div class="stat-label">Siswa Aktif</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-award-fill"></i>
+                        </div>
+                        <span class="stat-number counter" data-target="95">0</span>
+                        <div class="stat-label">% Lulusan Bekerja</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <span class="stat-number counter" data-target="50">0</span>
+                        <div class="stat-label">Mitra Industri</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-trophy-fill"></i>
+                        </div>
+                        <span class="stat-number counter" data-target="30">0</span>
+                        <div class="stat-label">Prestasi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Tentang SMK Alpanza Bogor</h2>
+                <p>Sekolah Kejuruan Unggulan di Bogor</p>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80" 
+                         alt="SMK Alpanza Bogor" class="img-fluid rounded-4 shadow-lg mb-4">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h3 class="fw-bold mb-4">Mengapa Memilih SMK Alpanza Bogor?</h3>
+                    <p class="text-muted mb-4">SMK Alpanza Bogor adalah sekolah menengah kejuruan yang berfokus pada pengembangan kompetensi siswa di bidang teknologi dan bisnis, dengan pendekatan pembelajaran modern dan kolaborasi erat dengan dunia industri.</p>
+                    
+                    <div class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Akreditasi A</strong> - Standar pendidikan berkualitas tinggi
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Kurikulum Merdeka</strong> - Pembelajaran yang relevan dan adaptif
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Teaching Factory</strong> - Belajar langsung dengan proyek nyata
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Sertifikasi Kompetensi</strong> - Lulusan bersertifikat profesional
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Link & Match Industri</strong> - Jaminan penyaluran kerja
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" style="background: var(--light);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Program Keahlian</h2>
+                <p>3 Jurusan Unggulan yang Siap Mencetak Profesional</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- TKJ -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="program-card" onclick="showProgramDetail('tkj')">
+                        <div class="program-icon-wrapper">
+                            <i class="bi bi-laptop program-icon"></i>
+                        </div>
+                        <div class="program-card-body">
+                            <h3>TKJ</h3>
+                            <p class="full-name">Teknik Komputer dan Jaringan</p>
+                            <p>Menguasai instalasi, konfigurasi, dan manajemen jaringan komputer serta sistem administrasi server untuk memenuhi kebutuhan industri IT modern.</p>
+                            <div class="mb-3">
+                                <span class="program-badge">Networking</span>
+                                <span class="program-badge">Server Admin</span>
+                                <span class="program-badge">IT Support</span>
+                            </div>
+                            <button class="btn-detail">
+                                <i class="bi bi-info-circle me-2"></i>Lihat Detail
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TKR -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="program-card" onclick="showProgramDetail('tkr')">
+                        <div class="program-icon-wrapper">
+                            <i class="bi bi-gear-fill program-icon"></i>
+                        </div>
+                        <div class="program-card-body">
+                            <h3>TKR</h3>
+                            <p class="full-name">Teknik Kendaraan Ringan</p>
+                            <p>Mempelajari perawatan, perbaikan, dan modifikasi kendaraan ringan dengan teknologi terkini termasuk sistem injeksi dan kelistrikan otomotif.</p>
+                            <div class="mb-3">
+                                <span class="program-badge">Engine Repair</span>
+                                <span class="program-badge">Auto Electric</span>
+                                <span class="program-badge">Diagnostik</span>
+                            </div>
+                            <button class="btn-detail">
+                                <i class="bi bi-info-circle me-2"></i>Lihat Detail
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AKL -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="program-card" onclick="showProgramDetail('akl')">
+                        <div class="program-icon-wrapper">
+                            <i class="bi bi-calculator-fill program-icon"></i>
+                        </div>
+                        <div class="program-card-body">
+                            <h3>AKL</h3>
+                            <p class="full-name">Akuntansi dan Keuangan Lembaga</p>
+                            <p>Mendalami pencatatan keuangan, perpajakan, dan sistem informasi akuntansi untuk menjadi tenaga profesional di bidang keuangan dan perbankan.</p>
+                            <div class="mb-3">
+                                <span class="program-badge">Accounting</span>
+                                <span class="program-badge">Tax</span>
+                                <span class="program-badge">Banking</span>
+                            </div>
+                            <button class="btn-detail">
+                                <i class="bi bi-info-circle me-2"></i>Lihat Detail
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas Section -->
+    <section id="fasilitas">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Fasilitas Unggulan</h2>
+                <p>Sarana dan Prasarana yang Mendukung Pembelajaran</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-pc-display"></i>
+                        </div>
+                        <h4>Lab Komputer</h4>
+                        <p>Lab dengan 40 unit PC modern dan koneksi internet kencang</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <h4>Workshop Otomotif</h4>
+                        <p>Bengkel lengkap dengan peralatan diagnosa terkini</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-book-fill"></i>
+                        </div>
+                        <h4>Perpustakaan Digital</h4>
+                        <p>Koleksi buku lengkap dan akses e-library</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-wifi"></i>
+                        </div>
+                        <h4>Free WiFi</h4>
+                        <p>Internet gratis di seluruh area sekolah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" style="background: var(--light);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Galeri Kegiatan</h2>
+                <p>Dokumentasi Aktivitas Siswa SMK Alpanza Bogor</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80" alt="Kegiatan Praktek">
+                        <div class="gallery-overlay">
+                            <h5>Praktek Jaringan Komputer</h5>
+                            <p>Siswa TKJ sedang konfigurasi router</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80" alt="Workshop Otomotif">
+                        <div class="gallery-overlay">
+                            <h5>Workshop Otomotif</h5>
+                            <p>Praktek tune-up mesin kendaraan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Kelas Akuntansi">
+                        <div class="gallery-overlay">
+                            <h5>Pembelajaran AKL</h5>
+                            <p>Siswa belajar software akuntansi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" alt="Ekstrakurikuler">
+                        <div class="gallery-overlay">
+                            <h5>Kegiatan Ekstrakurikuler</h5>
+                            <p>Robotika dan programming club</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80" alt="Seminar">
+                        <div class="gallery-overlay">
+                            <h5>Seminar Industri</h5>
+                            <p>Kolaborasi dengan dunia kerja</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=80" alt="Upacara">
+                        <div class="gallery-overlay">
+                            <h5>Upacara Bendera</h5>
+                            <p>Pembinaan karakter siswa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PPDB Section -->
+    <section id="ppdb" class="ppdb-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2 class="text-white">PPDB 2026</h2>
+                <p class="text-white-50">Penerimaan Peserta Didik Baru Tahun Ajaran 2026/2027</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="ppdb-card">
+                        <h3><i class="bi bi-calendar-check me-2"></i>Jadwal Pendaftaran</h3>
+                        <ul class="ppdb-timeline">
+                            <li>
+                                <strong>Gelombang 1</strong>
+                                1 Januari - 28 Februari 2026
+                            </li>
+                            <li>
+                                <strong>Gelombang 2</strong>
+                                1 Maret - 30 April 2026
+                            </li>
+                            <li>
+                                <strong>Gelombang 3</strong>
+                                1 Mei - 30 Juni 2026
+                            </li>
+                            <li>
+                                <strong>Daftar Ulang</strong>
+                                1 - 10 Juli 2026
+                            </li>
+                            <li>
+                                <strong>Tahun Ajaran Baru</strong>
+                                15 Juli 2026
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="ppdb-card">
+                        <h3><i class="bi bi-file-earmark-text me-2"></i>Persyaratan Pendaftaran</h3>
+                        <ul class="ppdb-timeline">
+                            <li>Ijazah/SKHUN SMP/MTs (asli dan fotocopy)</li>
+                            <li>Kartu Keluarga (fotocopy)</li>
+                            <li>Akta Kelahiran (fotocopy)</li>
+                            <li>Pas foto 3x4 (4 lembar)</li>
+                            <li>Formulir pendaftaran (download di website)</li>
+                        </ul>
+                        
+                        <div class="mt-4">
+                            <a href="https://wa.me/6282222222229?text=Halo,%20saya%20ingin%20mendaftar%20PPDB%20SMK%20Alpanza%20Bogor" 
+                               class="btn btn-warning btn-lg w-100" target="_blank">
+                                <i class="bi bi-whatsapp me-2"></i>Daftar via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Hubungi Kami</h2>
+                <p>Kami Siap Membantu Anda</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="contact-card">
+                        <div class="d-flex">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h5>Alamat Sekolah</h5>
+                                <p>
+                                    Jl. Raya Bogor KM.47<br>
+                                    Komplek Ruko Alpanza Center Blok B No.12<br>
+                                    RT.005/RW.003, Bojong Nangka, Gunung Putri<br>
+                                    Kabupaten Bogor, Jawa Barat 16967
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="d-flex">
+                            <div class="contact-icon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h5>Telepon / WhatsApp</h5>
+                                <p>
+                                    <a href="tel:02518661999">(0251) 8661999</a><br>
+                                    <a href="https://wa.me/6282222222229">0822-2222-2229 (Chat Only)</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="d-flex">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h5>Email</h5>
+                                <p>
+                                    <a href="mailto:info@smkalpanza-bogor.sch.id">info@smkalpanza-bogor.sch.id</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links mt-4" data-aos="fade-up">
+                        <a href="https://www.instagram.com/smk_alpanza_bogor/" target="_blank" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/smkalpanzabogor" target="_blank" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@smkalpanzabogor" target="_blank" title="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://twitter.com/smkalpanzabogor" target="_blank" title="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div style="border-radius: 20px; overflow: hidden; height: 100%;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.7!2d106.93!3d-6.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjcnMDAuMCJTIDEwNsKwNTUnNDguMCJF!5e0!3m2!1sid!2sid!4v1234567890" 
+                                width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5>SMK Alpanza Bogor</h5>
+                    <p class="text-white-50">
+                        Sekolah Menengah Kejuruan yang menghasilkan lulusan unggul, cerdas, terampil, mandiri, dan religius untuk menghadapi tantangan dunia industri.
+                    </p>
+                    <p class="text-white-50 mb-1"><strong>NPSN:</strong> 69123456</p>
+                    <p class="text-white-50 mb-1"><strong>Akreditasi:</strong> A (Unggul)</p>
+                    <p class="text-white-50"><strong>Kurikulum:</strong> Merdeka</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5>Navigasi</h5>
+                    <a href="#home">Beranda</a>
+                    <a href="#about">Tentang</a>
+                    <a href="#programs">Program</a>
+                    <a href="#gallery">Galeri</a>
+                    <a href="#ppdb">PPDB 2026</a>
+                    <a href="#contact">Kontak</a>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h5>Program Keahlian</h5>
+                    <a href="#programs">Teknik Komputer dan Jaringan (TKJ)</a>
+                    <a href="#programs">Teknik Kendaraan Ringan (TKR)</a>
+                    <a href="#programs">Akuntansi dan Keuangan Lembaga (AKL)</a>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h5>Kontak</h5>
+                    <p class="text-white-50 mb-2">
+                        <i class="bi bi-geo-alt-fill me-2"></i>
+                        Bojong Nangka, Gunung Putri, Bogor
+                    </p>
+                    <p class="text-white-50 mb-2">
+                        <i class="bi bi-telephone-fill me-2"></i>
+                        (0251) 8661999
+                    </p>
+                    <p class="text-white-50 mb-2">
+                        <i class="bi bi-whatsapp me-2"></i>
+                        0822-2222-2229
+                    </p>
+                    <p class="text-white-50">
+                        <i class="bi bi-envelope-fill me-2"></i>
+                        info@smkalpanza-bogor.sch.id
+                    </p>
+                </div>
+            </div>
+            
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0 30px;">
+            
+            <div class="text-center">
+                <p class="mb-0 text-white-50">
+                    &copy; 2026 SMK Alpanza Bogor. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Modals for Program Details -->
+    <!-- TKJ Modal -->
+    <div class="modal fade" id="tkjModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="bi bi-laptop me-2"></i>
+                        Teknik Komputer dan Jaringan (TKJ)
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h5><i class="bi bi-info-circle me-2"></i>Deskripsi Program</h5>
+                        <p>Program keahlian Teknik Komputer dan Jaringan membekali siswa dengan keterampilan komprehensif dalam instalasi, konfigurasi, administrasi, dan pemeliharaan sistem komputer dan jaringan. Siswa akan mempelajari teknologi terkini dalam dunia IT dan networking.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-book me-2"></i>Kompetensi yang Dipelajari</h5>
+                        <ul>
+                            <li>Instalasi dan konfigurasi sistem operasi (Windows & Linux)</li>
+                            <li>Perakitan dan troubleshooting komputer</li>
+                            <li>Jaringan komputer (LAN, WAN, Wireless)</li>
+                            <li>Konfigurasi router dan switch (Cisco, MikroTik)</li>
+                            <li>Administrasi server dan database</li>
+                            <li>Keamanan jaringan (firewall, VPN)</li>
+                            <li>Web server dan cloud computing</li>
+                            <li>Pemrograman dasar dan scripting</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-briefcase me-2"></i>Peluang Karir</h5>
+                        <ul>
+                            <li>Network Administrator</li>
+                            <li>System Administrator</li>
+                            <li>IT Support Specialist</li>
+                            <li>Network Engineer</li>
+                            <li>IT Consultant</li>
+                            <li>Database Administrator</li>
+                            <li>Cyber Security Analyst</li>
+                            <li>Cloud Infrastructure Specialist</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-award me-2"></i>Sertifikasi</h5>
+                        <ul>
+                            <li>Sertifikat Kompetensi BNSP</li>
+                            <li>MikroTik Certified Network Associate (MTCNA)</li>
+                            <li>Cisco Certified Network Associate (CCNA)</li>
+                            <li>CompTIA A+ / Network+</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        <strong>Info:</strong> Siswa TKJ mendapatkan fasilitas lab komputer modern dengan 40 unit PC dan perangkat networking profesional.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <a href="#ppdb" class="btn btn-warning" data-bs-dismiss="modal">
+                        <i class="bi bi-pencil-square me-2"></i>Daftar Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TKR Modal -->
+    <div class="modal fade" id="tkrModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="bi bi-gear-fill me-2"></i>
+                        Teknik Kendaraan Ringan (TKR)
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h5><i class="bi bi-info-circle me-2"></i>Deskripsi Program</h5>
+                        <p>Program keahlian Teknik Kendaraan Ringan mempersiapkan siswa untuk menjadi teknisi otomotif profesional yang mampu melakukan perawatan, perbaikan, dan diagnosis kendaraan ringan dengan teknologi modern termasuk sistem injeksi elektronik.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-book me-2"></i>Kompetensi yang Dipelajari</h5>
+                        <ul>
+                            <li>Sistem mesin bensin dan diesel</li>
+                            <li>Sistem kelistrikan dan elektronik kendaraan</li>
+                            <li>Sistem pemindah tenaga (transmisi, kopling, gardan)</li>
+                            <li>Sistem rem dan suspensi</li>
+                            <li>Sistem pengapian dan fuel injection (EFI)</li>
+                            <li>Engine tune-up dan overhaul</li>
+                            <li>Diagnosis dengan scanner/OBD</li>
+                            <li>AC mobil dan sistem comfort</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-briefcase me-2"></i>Peluang Karir</h5>
+                        <ul>
+                            <li>Teknisi Bengkel Resmi (ATPM)</li>
+                            <li>Mekanik Spesialis Engine/Transmisi</li>
+                            <li>Electrical Specialist Otomotif</li>
+                            <li>Service Advisor</li>
+                            <li>Quality Control Otomotif</li>
+                            <li>Instruktur Otomotif</li>
+                            <li>Wirausaha Bengkel</li>
+                            <li>Spare Part Specialist</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-award me-2"></i>Sertifikasi</h5>
+                        <ul>
+                            <li>Sertifikat Kompetensi BNSP</li>
+                            <li>Sertifikasi dari ATPM (Toyota, Honda, dll)</li>
+                            <li>Sertifikasi Teknisi AC Mobil</li>
+                            <li>Sertifikasi K3 (Keselamatan Kerja)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        <strong>Info:</strong> Siswa TKR mendapatkan pengalaman praktek langsung dengan unit kendaraan dan peralatan workshop modern termasuk scanner profesional.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <a href="#ppdb" class="btn btn-warning" data-bs-dismiss="modal">
+                        <i class="bi bi-pencil-square me-2"></i>Daftar Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AKL Modal -->
+    <div class="modal fade" id="aklModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="bi bi-calculator-fill me-2"></i>
+                        Akuntansi dan Keuangan Lembaga (AKL)
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h5><i class="bi bi-info-circle me-2"></i>Deskripsi Program</h5>
+                        <p>Program keahlian Akuntansi dan Keuangan Lembaga mempersiapkan siswa menjadi tenaga profesional di bidang keuangan yang mampu melakukan pencatatan transaksi, pelaporan keuangan, perpajakan, dan mengoperasikan sistem informasi akuntansi modern.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-book me-2"></i>Kompetensi yang Dipelajari</h5>
+                        <ul>
+                            <li>Dasar-dasar akuntansi dan pembukuan</li>
+                            <li>Akuntansi perusahaan jasa, dagang, dan manufaktur</li>
+                            <li>Komputer akuntansi (MYOB, Zahir, Accurate)</li>
+                            <li>Perpajakan (PPh, PPN, PPnBM)</li>
+                            <li>Administrasi perbankan</li>
+                            <li>Analisis laporan keuangan</li>
+                            <li>Sistem informasi akuntansi</li>
+                            <li>Aplikasi spreadsheet untuk akuntansi</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-briefcase me-2"></i>Peluang Karir</h5>
+                        <ul>
+                            <li>Staff Accounting/Finance</li>
+                            <li>Kasir dan Teller Bank</li>
+                            <li>Tax Officer</li>
+                            <li>Auditor Junior</li>
+                            <li>Accounting Staff di Kantor Akuntan Publik</li>
+                            <li>Admin Keuangan</li>
+                            <li>Financial Analyst</li>
+                            <li>Wirausaha Konsultan Pajak</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h5><i class="bi bi-award me-2"></i>Sertifikasi</h5>
+                        <ul>
+                            <li>Sertifikat Kompetensi BNSP</li>
+                            <li>Sertifikasi Software Akuntansi (MYOB, Accurate)</li>
+                            <li>Sertifikasi Perpajakan Brevet A & B</li>
+                            <li>Sertifikasi Microsoft Office Specialist (Excel)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        <strong>Info:</strong> Siswa AKL mendapatkan pelatihan intensif menggunakan software akuntansi profesional dan praktik langsung di bank/institusi keuangan mitra.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <a href="#ppdb" class="btn btn-warning" data-bs-dismiss="modal">
+                        <i class="bi bi-pencil-square me-2"></i>Daftar Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('fade-out');
+            }, 800);
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out',
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            const scrollTop = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Scroll to top
+        document.getElementById('scrollTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        let counterStarted = false;
+
+        function startCounter() {
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        window.addEventListener('scroll', function() {
+            const statsSection = document.querySelector('.stats');
+            if (statsSection && !counterStarted) {
+                const rect = statsSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    counterStarted = true;
+                    startCounter();
+                }
+            }
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        // Active nav link
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Program detail modals
+        function showProgramDetail(program) {
+            let modalId = '';
+            switch(program) {
+                case 'tkj':
+                    modalId = 'tkjModal';
+                    break;
+                case 'tkr':
+                    modalId = 'tkrModal';
+                    break;
+                case 'akl':
+                    modalId = 'aklModal';
+                    break;
+            }
+            
+            if (modalId) {
+                const modal = new bootstrap.Modal(document.getElementById(modalId));
+                modal.show();
+            }
+        }
+
+        // Gallery lightbox (optional enhancement)
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                // You can add a lightbox library here if needed
+                window.open(imgSrc, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
